@@ -1,9 +1,19 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+//standard lib include
 #include <iostream>
+//Qt include
+#include <QMainWindow>
 #include <QtWidgets>
+//Structure include
+#include "src/structure/classroom.hpp"
+
+class MWInternal
+{
+public:
+    std::vector<ClassRoom> classRooms;
+};
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +26,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    MWInternal internal;
 
 private:
     Ui::MainWindow *ui;

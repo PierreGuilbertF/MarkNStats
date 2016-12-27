@@ -2,7 +2,9 @@
 #define CLASSROOM_HPP
 
 #include <fstream>
+#include <sstream>
 #include <iostream>
+#include <vector>
 
 class Student
 {

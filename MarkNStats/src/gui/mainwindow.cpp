@@ -21,7 +21,8 @@ void MainWindow::bOpen()
 {
     QString filter = "CSV (*.csv)";
     QString fileName = QFileDialog::getOpenFileName(this,"Select a file...", QDir::homePath(),filter);
-    std::cout << fileName.toStdString() << std::endl;
+    ClassRoom c(fileName.toStdString());
+    this->internal.classRooms.push_back(c);
 }
 
 //--------------------------------------
