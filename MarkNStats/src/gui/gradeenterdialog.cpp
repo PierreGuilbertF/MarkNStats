@@ -1,13 +1,24 @@
-#include "gradeenterdialog.hpp"
+#include "gradeenterdialog.h"
+#include "ui_gradeenterdialog.h"
 
-//-----------------------------------------------------------------------------
-GradeEnterDialog::GradeEnterDialog(QWidget *p)
-    :QDialog(p)
+GradeEnterDialog::GradeEnterDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::GradeEnterDialog)
 {
+    ui->setupUi(this);
 }
 
-//-----------------------------------------------------------------------------
-void GradeEnterDialog::accept()
+//--------------------------------------
+void GradeEnterDialog::SetUpForm()
 {
-    QDialog::accept();
+    for(size_t k=0; k<this->grades.size();++k)
+    {
+        this->ui->formLayout->addWidget(this->names[k]);
+    }
+}
+
+//--------------------------------------
+GradeEnterDialog::~GradeEnterDialog()
+{
+    delete ui;
 }

@@ -44,8 +44,25 @@ void MainWindow::bSave()
 //--------------------------------------
 void MainWindow::bEnterGrade()
 {
-    /*QDialog* dialog = new QDialog(this);
-    dialog->show();*/
-    GradeEnterDialog* dialog = new GradeEnterDialog(this);
-    dialog->show();
+    // We need at least one classRoom
+    if(this->internal.classRooms.size() < 1)
+        return;
+    // setup the dialog box
+    this->internal.gradeEnterdialog = new GradeEnterDialog(this);
+    this->internal.gradeEnterdialog->setWindowTitle("Grade enter");
+    this->internal.gradeEnterdialog->names.resize(this->internal.classRooms[0].numberOfStudent);
+    this->internal.gradeEnterdialog->grades.resize(this->internal.classRooms[0].numberOfStudent);
+    for(size_t k=0; k<this->internal.classRooms[0].numberOfStudent;++k)
+    {
+        //TODO : make it with sstream
+        QString extension(" : ");
+        QString space(" ");
+        QString firstName = QString::fromUtf8(this->internal.classRooms[0].students[k].firstName.c_str());
+        QString name = QString::fromUtf8(this->internal.classRooms[0].students[k].name.c_str());
+        QString str = firstName + space + name + extension;
+        this->internal.gradeEnterdialog->names[k] = new QLabel(str);
+        this->internal.gradeEnterdialog->grades[k] = new QLineEdit();
+    }
+    this->internal.gradeEnterdialog->SetUpForm();
+    this->internal.gradeEnterdialog->show();
 }

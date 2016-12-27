@@ -9,12 +9,13 @@
 //Structure include
 #include "src/structure/classroom.hpp"
 //Gui include
-#include "gradeenterdialog.hpp"
+#include "gradeenterdialog.h"
 
 class MWInternal
 {
 public:
     std::vector<ClassRoom> classRooms;
+    GradeEnterDialog* gradeEnterdialog;
 };
 
 namespace Ui {

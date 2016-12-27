@@ -33,6 +33,6 @@ FORMS    += src/gui/mainwindow.ui \
 
 HEADERS += src/gui/mainwindow.h \
     src/structure/classroom.hpp \
-    src/gui/gradeenterdialog.hpp
+    src/gui/gradeenterdialog.h
 
 RESOURCES += resources/resource.qrc
