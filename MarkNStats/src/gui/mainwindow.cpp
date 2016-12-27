@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this->ui->actionOpen,SIGNAL(triggered(bool)),this,SLOT(bOpen()));
     connect(this->ui->actionSave,SIGNAL(triggered(bool)),this,SLOT(bSave()));
+    connect(this->ui->actionEnterGrade,SIGNAL(triggered(bool)),this,SLOT(bEnterGrade()));
 }
 
 //--------------------------------------
@@ -24,7 +25,10 @@ void MainWindow::bOpen()
     QString fileName = QFileDialog::getOpenFileName(this,"Select a file...", QDir::homePath(),filter);
     ClassRoom c(fileName.toStdString());
     this->internal.classRooms.push_back(c);
-    std::cout << this->internal.classRooms[0].meanAge << std::endl;
+
+    this->ui->fileNameLineEdit->setText(fileName);
+    this->ui->averageAgeLineEdit->setText(QString::number(this->internal.classRooms[0].meanAge));
+    this->ui->numberOfStudentLineEdit->setText(QString::number(this->internal.classRooms[0].numberOfStudent));
 }
 
 //--------------------------------------
@@ -35,4 +39,13 @@ void MainWindow::bSave()
 
     if(this->internal.classRooms.size()>0)
         this->internal.classRooms[0].SaveInfo(fileName.toStdString());
+}
+
+//--------------------------------------
+void MainWindow::bEnterGrade()
+{
+    /*QDialog* dialog = new QDialog(this);
+    dialog->show();*/
+    GradeEnterDialog* dialog = new GradeEnterDialog(this);
+    dialog->show();
 }

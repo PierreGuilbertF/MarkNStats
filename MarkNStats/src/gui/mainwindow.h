@@ -8,6 +8,8 @@
 #include <QtWidgets>
 //Structure include
 #include "src/structure/classroom.hpp"
+//Gui include
+#include "gradeenterdialog.hpp"
 
 class MWInternal
 {
@@ -35,6 +37,7 @@ private:
 public slots:
     void bOpen();
     void bSave();
+    void bEnterGrade();
 };
 
 #endif // MAINWINDOW_H
