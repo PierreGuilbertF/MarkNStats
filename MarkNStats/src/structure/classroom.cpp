@@ -26,6 +26,7 @@ ClassRoom::ClassRoom(std::string fileName)
     std::string firstName = "FirstName";
     std::string name = "Name";
     std::string age = "Age";
+    std::string behavior = "Behavior";
 
     while (std::getline(inputFile,line))
     {
@@ -45,6 +46,10 @@ ClassRoom::ClassRoom(std::string fileName)
             else if (age.compare(this->informationPattern[count]) == 0)
             {
                 currentStudent.age = std::atof(cell.c_str());
+            }
+            else if (behavior.compare(this->informationPattern[count]) == 0)
+            {
+                currentStudent.behavior = std::atof(cell.c_str());
             }
             count++;
         }
@@ -84,4 +89,27 @@ void ClassRoom::ComputeVariousMean()
     this->ComputeMeanAge();
     this->ComputeMeanGrade();
     this->ComputeMeanBehavior();
+}
+
+//--------------------------------------
+void ClassRoom::SaveInfo(std::string fileName)
+{
+    std::ofstream outputFile;
+    outputFile.open(fileName);
+
+    // If the file is not open
+    if(!outputFile.is_open())
+        return;
+
+    // Write the template information
+    outputFile << "FirstName,Name,Age,Behavior" << std::endl;
+
+    for(unsigned int k=0; k<this->numberOfStudent; ++k)
+    {
+        outputFile << this->students[k].firstName << ",";
+        outputFile << this->students[k].name << ",";
+        outputFile << this->students[k].age << ",";
+        outputFile << this->students[k].behavior << ",";
+        outputFile << std::endl;
+    }
 }

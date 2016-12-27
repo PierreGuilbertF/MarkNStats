@@ -29,6 +29,9 @@ class ClassRoom
 public:
 	ClassRoom(std::string fileName);
 
+    //Save the information of the classroom
+    void SaveInfo(std::string fileName);
+
 	//information available in the class
 	std::vector<std::string> informationPattern;
 	// List of the students in the classroom
