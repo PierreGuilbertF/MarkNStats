@@ -1,8 +1,8 @@
+#ifndef CLASSROOM_HPP
+#define CLASSROOM_HPP
+
 #include <fstream>
-#include "Eigen\Core"
-#include "DataReader.h"
-#include "ClasseScolaire.h"
-#include "Menu.h"
+#include <iostream>
 
 class Student
 {
@@ -35,55 +35,4 @@ public:
 	unsigned int numberOfStudent;
 };
 
-ClassRoom::ClassRoom(std::string fileName)
-{
-	std::ifstream inputFile;
-	inputFile.open(fileName);
-
-	// If the file is not reachable
-	if (!inputFile.is_open())
-		return;
-
-	std::string line;
-
-	// First line contains the information pattern
-	std::getline(inputFile, line);
-	{
-		std::stringstream lineStream(line);
-		std::string cell;
-		while (std::getline(lineStream, cell, ','))
-		{
-			this->informationPattern.push_back(cell);
-		}
-	}
-
-	std::string firstName = "FirstName";
-	std::string name = "Name";
-	std::string age = "Age";
-
-	while (std::getline(inputFile,line))
-	{
-		std::stringstream lineStream(line);
-		std::string cell;
-		
-		Student currentStudent;
-		unsigned int count = 0;
-		// This checks for a trailing comma with no data after it.
-		while (std::getline(lineStream, cell, ','))
-		{
-			// Check the kind of input information
-			if (firstName.compare(this->informationPattern[count]) == 0)
-				currentStudent.firstName = cell;
-			else if (name.compare(this->informationPattern[count]) == 0)
-				currentStudent.name = cell;
-			else if (age.compare(this->informationPattern[count]) == 0)
-			{
-				currentStudent.age = std::atof(cell.c_str());
-			}
-			count++;
-		}
-		this->students.push_back(currentStudent);
-	}
-
-	this->numberOfStudent = this->students.size();
-}
+#endif
