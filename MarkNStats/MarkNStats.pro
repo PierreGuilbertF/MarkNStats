@@ -25,9 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     src/gui/mainwindow.cpp \
-    src/structure/classroom.cpp
+    src/structure/classroom.cpp \
+    src/gui/gradeenterdialog.cpp
 
-FORMS    += src/gui/mainwindow.ui
+FORMS    += src/gui/mainwindow.ui \
+    src/gui/gradeenterdialog.ui
 
 HEADERS += src/gui/mainwindow.h \
-    src/structure/classroom.hpp
+    src/structure/classroom.hpp \
+    src/gui/gradeenterdialog.hpp
+
+RESOURCES += resources/resource.qrc
