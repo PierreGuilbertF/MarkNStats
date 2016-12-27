@@ -23,6 +23,7 @@ void MainWindow::bOpen()
     QString fileName = QFileDialog::getOpenFileName(this,"Select a file...", QDir::homePath(),filter);
     ClassRoom c(fileName.toStdString());
     this->internal.classRooms.push_back(c);
+    std::cout << this->internal.classRooms[0].meanAge << std::endl;
 }
 
 //--------------------------------------

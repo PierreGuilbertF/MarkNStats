@@ -35,6 +35,18 @@ public:
 	std::vector<Student> students;
 	// Number of student in the classroom
 	unsigned int numberOfStudent;
+    //Average age of the class
+    float meanAge;
+    //AverageGrade of the class
+    float meanGrade;
+    //Average behavior of the class
+    float meanBehavior;
+
+protected:
+    void ComputeMeanAge();
+    void ComputeMeanGrade();
+    void ComputeMeanBehavior();
+    void ComputeVariousMean();
 };
 
 #endif
