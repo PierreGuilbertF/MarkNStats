@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //Initialize paraleters
+    this->internal.isAFileLoaded = false;
+    this->internal.classRooms.resize(1);
     //Initialized the dialogBox
     this->internal.gradeEnterdialog = new GradeEnterDialog(this);
     this->internal.gradeEnterdialog->setWindowTitle("Grade enter");
@@ -29,27 +32,37 @@ void MainWindow::bOpen()
     QString filter = "CSV (*.csv)";
     QString fileName = QFileDialog::getOpenFileName(this,"Select a file...", QDir::homePath(),filter);
     ClassRoom c(fileName.toStdString());
-    this->internal.classRooms.push_back(c);
+    this->internal.classRooms[0] = c;
+
+    if(c.students.size()>0)
+        this->internal.isAFileLoaded = true;
+    else
+        return;
 
     this->ui->fileNameLineEdit->setText(fileName);
     this->ui->averageAgeLineEdit->setText(QString::number(this->internal.classRooms[0].meanAge));
     this->ui->numberOfStudentLineEdit->setText(QString::number(this->internal.classRooms[0].numberOfStudent));
-    this->ui->averageGradeLineEdit->setText(QString::number(this->internal.classRooms[0].meanGrade));
+    this->ui->averageGradeLineEdit->setText(QString::number(this->internal.classRooms[0].hardMeanGrade));
+    this->ui->meanGradeLineEdit->setText(QString::number(this->internal.classRooms[0].meanGrade));
 }
 
 //--------------------------------------
 void MainWindow::bSave()
 {
+    if(!this->internal.isAFileLoaded)
+        return;
+
     QString filter = "CSV (*.csv)";
     QString fileName = QFileDialog::getSaveFileName(this, "Save File",QDir::homePath(),filter);
-
-    if(this->internal.classRooms.size()>0)
-        this->internal.classRooms[0].SaveInfo(fileName.toStdString());
+    this->internal.classRooms[0].SaveInfo(fileName.toStdString());
 }
 
 //--------------------------------------
 void MainWindow::bEnterGrade()
 {
+    if(!this->internal.isAFileLoaded)
+        return;
+
     // We need at least one classRoom
     if(this->internal.classRooms.size() < 1)
         return;
@@ -61,6 +74,9 @@ void MainWindow::bEnterGrade()
 //--------------------------------------
 void MainWindow::bGradeEntered()
 {
+    if(!this->internal.isAFileLoaded)
+        return;
+
     std::cout << "Dialog accepted" << std::endl;
     for(size_t k=0; k<this->internal.classRooms[0].numberOfStudent; ++k)
     {

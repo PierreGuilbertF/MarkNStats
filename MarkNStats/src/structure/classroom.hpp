@@ -21,7 +21,7 @@ public:
 	unsigned int numberOfMarks;
 	// Marks obtained by the student
 	std::vector<float> marks;
-    //Average grad eof the student
+    //Average grade of the student
     float meanGrade;
 	// Age of the student
 	float age;
@@ -35,6 +35,7 @@ private:
 class ClassRoom
 {
 public:
+    ClassRoom();
 	ClassRoom(std::string fileName);
 
     //Save the information of the classroom
@@ -48,8 +49,10 @@ public:
 	unsigned int numberOfStudent;
     //Average age of the class
     float meanAge;
-    //AverageGrade of the class
+    //Average grade of the students (the mean of all mean)
     float meanGrade;
+    //Average grade of the class (the mean of all grades)
+    float hardMeanGrade;
     //Average behavior of the class
     float meanBehavior;
 
@@ -58,6 +61,7 @@ protected:
     void ComputeMeanGrade();
     void ComputeMeanBehavior();
     void ComputeVariousMean();
+    void ComputeHardMeanGrade();
 };
 
 #endif

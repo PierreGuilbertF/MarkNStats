@@ -16,6 +16,7 @@ class MWInternal
 public:
     std::vector<ClassRoom> classRooms;
     GradeEnterDialog* gradeEnterdialog;
+    bool isAFileLoaded;
 };
 
 namespace Ui {

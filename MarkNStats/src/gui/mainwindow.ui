@@ -66,14 +66,34 @@
        <item row="3" column="0">
         <widget class="QLabel" name="averageGradeLabel">
          <property name="text">
-          <string>average grade</string>
+          <string>average grade :</string>
          </property>
         </widget>
        </item>
        <item row="3" column="1">
         <widget class="QLineEdit" name="averageGradeLineEdit">
+         <property name="toolTip">
+          <string>average of all grades obtained by the students</string>
+         </property>
          <property name="text">
           <string>NA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="meanGradeLineEdit">
+         <property name="toolTip">
+          <string>it is the average of the mean of the student. It can be different of the average grade is some grades are missing for some students</string>
+         </property>
+         <property name="text">
+          <string>NA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="meanGradeLabel">
+         <property name="text">
+          <string>mean grade : </string>
          </property>
         </widget>
        </item>

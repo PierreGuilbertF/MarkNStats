@@ -3,14 +3,26 @@
 //--------------------------------------
 void Student::ComputeMeanGrade()
 {
+    int count = 0;
     this->meanGrade = 0;
     for(size_t k=0;k<this->marks.size();++k)
     {
-        this->meanGrade = this->meanGrade + this->marks[k];
+        if(this->marks[k] != WRONG_VALUE)
+        {
+            this->meanGrade = this->meanGrade + this->marks[k];
+            count++;
+        }
     }
-    this->meanGrade = this->meanGrade / this->marks.size();
+    this->meanGrade = this->meanGrade / count;
+    this->numberOfMarks = count;
 
     return;
+}
+
+//--------------------------------------
+ClassRoom::ClassRoom()
+{
+
 }
 
 //--------------------------------------
@@ -71,7 +83,6 @@ ClassRoom::ClassRoom(std::string fileName)
             }
             count++;
         }
-
         currentStudent.ComputeMeanGrade();
         this->students.push_back(currentStudent);
     }
@@ -103,6 +114,25 @@ void ClassRoom::ComputeMeanGrade()
 }
 
 //--------------------------------------
+void ClassRoom::ComputeHardMeanGrade()
+{
+    int count = 0;
+    this->hardMeanGrade = 0;
+    for(size_t i=0; i<this->numberOfStudent;++i)
+    {
+        for(size_t j=0; j<this->students[i].marks.size();++j)
+        {
+            if(this->students[i].marks[j] != WRONG_VALUE)
+            {
+                this->hardMeanGrade = this->hardMeanGrade + this->students[i].marks[j];
+                count++;
+            }
+        }
+    }
+    this->hardMeanGrade = this->hardMeanGrade / (count);
+}
+
+//--------------------------------------
 void ClassRoom::ComputeMeanBehavior()
 {
 
@@ -114,6 +144,7 @@ void ClassRoom::ComputeVariousMean()
     this->ComputeMeanAge();
     this->ComputeMeanGrade();
     this->ComputeMeanBehavior();
+    this->ComputeHardMeanGrade();
 }
 
 //--------------------------------------
