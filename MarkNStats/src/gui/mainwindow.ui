@@ -21,14 +21,14 @@
        <string>Information</string>
       </property>
       <layout class="QFormLayout" name="InformationGroupBoxLayout">
-       <item row="2" column="2">
+       <item row="2" column="1">
         <widget class="QLineEdit" name="averageAgeLineEdit">
          <property name="text">
           <string>NA</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
+       <item row="0" column="1">
         <widget class="QLineEdit" name="fileNameLineEdit">
          <property name="text">
           <string>NA</string>
@@ -56,8 +56,22 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="numberOfStudentLineEdit">
+         <property name="text">
+          <string>NA</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="averageGradeLabel">
+         <property name="text">
+          <string>average grade</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="averageGradeLineEdit">
          <property name="text">
           <string>NA</string>
          </property>

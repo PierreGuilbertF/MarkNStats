@@ -39,6 +39,7 @@ public slots:
     void bOpen();
     void bSave();
     void bEnterGrade();
+    void bGradeEntered();
 };
 
 #endif // MAINWINDOW_H

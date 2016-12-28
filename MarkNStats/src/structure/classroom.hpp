@@ -1,6 +1,10 @@
 #ifndef CLASSROOM_HPP
 #define CLASSROOM_HPP
 
+#ifndef WRONG_VALUE
+#define WRONG_VALUE -128
+#endif
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -17,10 +21,14 @@ public:
 	unsigned int numberOfMarks;
 	// Marks obtained by the student
 	std::vector<float> marks;
+    //Average grad eof the student
+    float meanGrade;
 	// Age of the student
 	float age;
 	// Behavior of the student
 	float behavior;
+
+    void ComputeMeanGrade();
 private:
 };
 

@@ -1,6 +1,19 @@
 #include "classroom.hpp"
 
 //--------------------------------------
+void Student::ComputeMeanGrade()
+{
+    this->meanGrade = 0;
+    for(size_t k=0;k<this->marks.size();++k)
+    {
+        this->meanGrade = this->meanGrade + this->marks[k];
+    }
+    this->meanGrade = this->meanGrade / this->marks.size();
+
+    return;
+}
+
+//--------------------------------------
 ClassRoom::ClassRoom(std::string fileName)
 {
     std::ifstream inputFile;
@@ -27,6 +40,7 @@ ClassRoom::ClassRoom(std::string fileName)
     std::string name = "Name";
     std::string age = "Age";
     std::string behavior = "Behavior";
+    std::string grade = "Grade";
 
     while (std::getline(inputFile,line))
     {
@@ -51,8 +65,14 @@ ClassRoom::ClassRoom(std::string fileName)
             {
                 currentStudent.behavior = std::atof(cell.c_str());
             }
+            else if (grade.compare(this->informationPattern[count]) == 0)
+            {
+                currentStudent.marks.push_back(std::atof(cell.c_str()));
+            }
             count++;
         }
+
+        currentStudent.ComputeMeanGrade();
         this->students.push_back(currentStudent);
     }
 
@@ -74,7 +94,12 @@ void ClassRoom::ComputeMeanAge()
 //--------------------------------------
 void ClassRoom::ComputeMeanGrade()
 {
-
+    this->meanGrade = 0;
+    for(size_t k=0; k<this->numberOfStudent;++k)
+    {
+        this->meanGrade = this->meanGrade + this->students[k].meanGrade;
+    }
+    this->meanGrade = this->meanGrade / this->numberOfStudent;
 }
 
 //--------------------------------------
@@ -102,14 +127,22 @@ void ClassRoom::SaveInfo(std::string fileName)
         return;
 
     // Write the template information
-    outputFile << "FirstName,Name,Age,Behavior" << std::endl;
-
+    outputFile << "FirstName,Name,Age,Behavior,";
+    for(size_t k=0;k<this->students[0].marks.size();++k)
+    {
+        outputFile << "Grade,";
+    }
+    outputFile << std::endl;
     for(unsigned int k=0; k<this->numberOfStudent; ++k)
     {
         outputFile << this->students[k].firstName << ",";
         outputFile << this->students[k].name << ",";
         outputFile << this->students[k].age << ",";
         outputFile << this->students[k].behavior << ",";
+        for(unsigned int i=0; i<this->students[k].marks.size();++i)
+        {
+            outputFile << this->students[k].marks[i] << ",";
+        }
         outputFile << std::endl;
     }
 }
