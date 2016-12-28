@@ -44,6 +44,33 @@ void MainWindow::bOpen()
     this->ui->numberOfStudentLineEdit->setText(QString::number(this->internal.classRooms[0].numberOfStudent));
     this->ui->averageGradeLineEdit->setText(QString::number(this->internal.classRooms[0].hardMeanGrade));
     this->ui->meanGradeLineEdit->setText(QString::number(this->internal.classRooms[0].meanGrade));
+
+    //this->ui->displayGroupBoxLayout->addWidget()
+    for(size_t k=0;k<this->internal.classRooms[0].numberOfStudent;++k)
+    {
+        //firstName
+        QLabel* temp = new QLabel(this->internal.classRooms[0].students[k].firstName.c_str());
+        this->ui->displayGroupBoxLayout->addWidget(temp,k,0,1,1);
+        //Name
+        temp = new QLabel(this->internal.classRooms[0].students[k].name.c_str());
+        this->ui->displayGroupBoxLayout->addWidget(temp,k,1,1,1);
+        //Age
+        temp = new QLabel(QString::number(this->internal.classRooms[0].students[k].age));
+        this->ui->displayGroupBoxLayout->addWidget(temp,k,2,1,1);
+        //Behavior
+        temp = new QLabel(QString::number(this->internal.classRooms[0].students[k].behavior));
+        this->ui->displayGroupBoxLayout->addWidget(temp,k,3,1,1);
+        //rades
+        for(size_t i=0;i<this->internal.classRooms[0].students[k].marks.size();++i)
+        {
+            float mark = this->internal.classRooms[0].students[k].marks[i];
+            if(mark != WRONG_VALUE)
+            {
+                temp = new QLabel(QString::number(mark));
+                this->ui->displayGroupBoxLayout->addWidget(temp,k,i+3,1,1);
+            }
+        }
+    }
 }
 
 //--------------------------------------
